@@ -3,45 +3,6 @@ vec2mat <- function(vec, n_times){
   return(matrix(rep(vec, n_times), ncol=n_times, byrow=FALSE))
 }
 
-
-####  Monte Carlo integration functions
-monte_carlo_int_NB <- function(dat, mu, gamma, phi, gene.subset.n){
-  weights <- pos_res <- list()
-  for(i in 1:nrow(dat)){
-    m <- mu[-i,!is.na(dat[i,])]
-    x <- dat[i,!is.na(dat[i,])]
-    gamma_sub <- gamma[-i]
-    phi_sub <- phi[-i]
-    
-    # take a subset of genes to do integration - save time
-    if(!is.null(gene.subset.n) & is.numeric(gene.subset.n) & length(gene.subset.n)==1){
-      if(i==1){cat(sprintf("Using %s random genes for Monte Carlo integration\n", gene.subset.n))}
-      mcint_ind <- sample(1:(nrow(dat)-1), gene.subset.n, replace=FALSE)
-      m <- m[mcint_ind, ]; gamma_sub <- gamma_sub[mcint_ind]; phi_sub <- phi_sub[mcint_ind]
-      G_sub <- gene.subset.n
-    }else{
-      if(i==1){cat("Using all genes for Monte Carlo integration; the function runs very slow for large number of genes\n")}
-      G_sub <- nrow(dat)-1
-    }
-    
-    #LH <- sapply(1:G_sub, function(j){sum(log2(dnbinom(x, mu=m[j,], size=1/phi_sub[j])+1))})  
-    LH <- sapply(1:G_sub, function(j){prod(dnbinom(x, mu=m[j,], size=1/phi_sub[j]))})
-    LH[is.nan(LH)]=0; 
-    if(sum(LH)==0 | is.na(sum(LH))){
-      pos_res[[i]] <- c(gamma.star=as.numeric(gamma[i]), phi.star=as.numeric(phi[i]))
-    }else{
-      pos_res[[i]] <- c(gamma.star=sum(gamma_sub*LH)/sum(LH), phi.star=sum(phi_sub*LH)/sum(LH))
-    }
-    
-    weights[[i]] <- as.matrix(LH/sum(LH))
-  }
-  pos_res <- do.call(rbind, pos_res)
-  weights <- do.call(cbind, weights)
-  res <- list(gamma_star=pos_res[, "gamma.star"], phi_star=pos_res[, "phi.star"], weights=weights)	
-  return(res)
-} 
-
-
 ####  Match quantiles
 # keep_zero: zero values in the original counts don't change
 match_quantiles <- function(counts_sub, old_mu, old_phi, new_mu, new_phi, keep_zero=TRUE){
