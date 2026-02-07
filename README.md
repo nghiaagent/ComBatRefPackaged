@@ -8,7 +8,7 @@
 <!-- badges: end -->
 
 This is a fork of [ComBat-ref](https://github.com/xiaoyu12/Combat-ref)
-to provide an installable package.  
+to provide an installable package.
 
 ## Installation
 
@@ -24,9 +24,7 @@ pak::pak("nghiaagent/ComBatRefPackaged")
 To check the help file:
 
 ``` r
-?ComBat_ref
-#> No documentation for 'ComBat_ref' in specified packages and libraries:
-#> you could try '??ComBat_ref'
+?ComBatRefPackaged::ComBat_ref
 ```
 
 ## Cite
