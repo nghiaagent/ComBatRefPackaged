@@ -8,7 +8,9 @@
 <!-- badges: end -->
 
 This is a fork of [ComBat-ref](https://github.com/xiaoyu12/Combat-ref)
-to provide an installable package. \## Installation
+to provide an installable package.  
+
+## Installation
 
 You can install the development version of ComBatRefPackaged like so:
 
