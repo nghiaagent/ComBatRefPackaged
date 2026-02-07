@@ -32,7 +32,7 @@ pak::pak("nghiaagent/ComBatRefPackaged")
 ## Help
 To check the help file:
 ```{r example}
-?ComBat_ref
+?ComBatRefPackaged::ComBat_ref
 ```
 
 ## Cite
