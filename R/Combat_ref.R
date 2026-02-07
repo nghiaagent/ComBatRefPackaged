@@ -1,6 +1,6 @@
-# Correct batch effects for RNA-seq count data using a negative binomial distribution
-# Adjust count towards the reference batch with minimum estimated dispersion
-
+#' Correct batch effects for RNA-seq count data using a negative binomial distribution
+#' Adjust count towards the reference batch with minimum estimated dispersion
+#' 
 #' @param counts Raw count matrix from genomic studies (dimensions gene x sample) 
 #' @param batch Batch covariate (only one batch allowed)
 #' @param group Vector / factor for condition of interest 
