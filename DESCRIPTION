@@ -2,10 +2,11 @@ Package: ComBatRefPackaged
 Title: Packaged implementation of ComBat-ref algorithm
 Version: 0.0.1
 Authors@R: 
+    person("Nghia", "Nguyen", email = "nghia6a1@gmail.com", role = c("aut", "cre"))
 Description: Packaged implementation of ComBat-ref algorithm from Zhang X. Highly effective batch effect correction method for RNA-seq count data. Computational and Structural Biotechnology Journal. 2025;27:58-64. doi:10.1016/j.csbj.2024.12.010
-License: 
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Imports:
-  edgeR
+    edgeR (>= 3.22.1)
